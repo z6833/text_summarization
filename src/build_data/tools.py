@@ -7,11 +7,13 @@ from multiprocessing import Pool, cpu_count
 
 from utils.config import root_dir
 
-def save_to_csv(dataframe, save_path=path.join(root_dir, 'result.csv')):
+cpu_cores = cpu_count()
 
-    if isinstance(dataframe, pd.DataFrame, index=False):
-        dataframe.to_csv(save_path, encoding='utf_8_sig', index=index)
+def save_to_csv(dataframe, save_path=path.join(root_dir, 'result.csv'), index=False):
 
+
+    assert isinstance(dataframe, pd.DataFrame) or isinstance(dataframe, pd.Series), 'Error type .'
+    dataframe.to_csv(save_path, encoding='utf_8_sig', index=index)
 
 
 def load_stopwords(file_path):
@@ -25,12 +27,12 @@ def load_stopwords(file_path):
 
 
 def multi_process_csv(dataframe, func):
-    cores = cpu_count()
+
     # 数据切分
-    data_split = np.array_split(dataframe, cores)
+    data_split = np.array_split(dataframe, cpu_cores)
 
     # 并发处理
-    with Pool(processes=cores) as pool:
+    with Pool(processes=cpu_cores) as pool:
         dataframe = pd.concat(pool.map(func, data_split))
 
     pool.close()

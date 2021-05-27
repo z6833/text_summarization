@@ -2,7 +2,7 @@
 import pandas as pd
 
 from utils.config import train_data_path, test_data_path
-import utils.config
+from utils import config
 from preprocess import pre_process
 from tools import save_to_csv
 from train_vector import train_word2vec
@@ -21,11 +21,11 @@ def get_processed_data(train_data_path, test_data_path, is_to_save):
     # 保存预处理后的数据
     if is_to_save:
         save_to_csv(train_df, save_path=config.train_seg_path)
-        save_to_csv(test_df, save_path == config.test_seg_path)
+        save_to_csv(test_df, save_path=config.test_seg_path)
 
     return train_df, test_df
 
-def get_merged_data(train_df, test_df, is_to_save=True)
+def get_merged_data(train_df, test_df, is_to_save=True):
     merged_df = pd.concat([train_df, test_df])[['Question', 'Dialogue', 'Report']]
     merged_df['merged'] = merged_df.apply(lambda x: ' '.join(x), axis=1)
 
@@ -46,7 +46,8 @@ def build_data(train_data_path, test_data_path):
     # print(merged_df.head(3))
 
     # 3. 训练词向量
-    train_word2vec(file_path=config.merged_seg_path)
+    w2v_model = train_word2vec(file_path=config.merged_seg_path)
+    print(w2v_model)
 
 if __name__ == '__main__':
     # 构造数据集
