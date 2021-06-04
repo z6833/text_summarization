@@ -52,7 +52,7 @@ def sentence_proc(sentence):
 
 def sentences_proc(dataframe):
 
-    col_list = ['Brand', 'Model', 'Question', 'Dialogue', 'Report'][3:4]
+    col_list = ['Brand', 'Model', 'Question', 'Dialogue', 'Report']
 
     for col in col_list:
         if col in dataframe.columns:

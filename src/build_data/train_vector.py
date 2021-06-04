@@ -5,6 +5,7 @@ from gensim.models.word2vec import LineSentence
 from utils import config
 from tools import cpu_cores
 
+
 def train_word2vec(file_path=config.merged_seg_path):
 
     # 训练词向量
