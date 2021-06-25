@@ -7,17 +7,17 @@ root_dir = pathlib.Path(path.abspath(__file__)).parent.parent
 # 其他常用路径
 data_dir = path.join(root_dir, 'data')
 model_dir = path.join(root_dir, 'model')
-
+results_dir = path.join(root_dir, 'results')
 
 # 数据集路径
 train_data_path = path.join(data_dir, 'train.csv')
-test_data_path = path.join(data_dir, 'test.csv')
+test_data_path = path.join(data_dir, 'demotest.csv')
 
 # 预处理后的数据集路径
 train_seg_path = path.join(data_dir, 'train_seg_data.csv')
 test_seg_path = path.join(data_dir, 'test_seg_data.csv')
 
-# 合并train/test，构造用于训练词向量的数据 路径
+# 合并train/demotest，构造用于训练词向量的数据 路径
 merged_seg_path = path.join(data_dir, 'merged_train_test_seg_data.csv')
 
 # 词向量维度
@@ -57,3 +57,23 @@ train_y_path = path.join(data_dir, 'train_Y')
 
 test_x_path = path.join(data_dir, 'test_X')
 test_y_path = path.join(data_dir, 'test_Y')
+
+
+# 训练参数相关
+batch_size = 8
+epochs = 10
+
+max_enc_len = 400
+max_dec_len = 100
+
+vocab_size = 30000
+# vocab_size = 300
+beams_size = 4
+
+# samples
+sample_total = 82871
+
+# 文件路径
+default_checkpoint_dir = model_dir
+test_save_dir = path.join(results_dir, 'demotest')
+

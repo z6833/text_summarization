@@ -6,7 +6,7 @@ from gensim.models import Word2Vec
 from utils import config
 
 
-class Vocab():
+class Vocab:
 
     PAD_TOKEN = '<PAD>'
     UNKNOWN_TOKEN = '<UNK>'
@@ -27,6 +27,7 @@ class Vocab():
         :param vocab_file:
         :param vocab_max_size:
         """
+
         self.word2index, self.index2word = self.load_vocab(vocab_file, vocab_max_size)
         self.count = len(self.word2index)
 
@@ -36,8 +37,8 @@ class Vocab():
         word2index = {mask: index for index, mask in enumerate(Vocab.MASKS)}
         index2word = {index: mask for index, mask in enumerate(Vocab.MASKS)}
 
-        vocab_dict = json.load(fp=open(file_path, 'r', encoding='utf-8')).items()
-        vocab_dict = vocab_dict if vocab_max_size is None else list(vocab_dict)[: vocab_max_size]
+        vocab_dict = list(json.load(fp=open(file_path, 'r', encoding='utf-8')).items())[:-4]
+        vocab_dict = vocab_dict if vocab_max_size is None else vocab_dict[: vocab_max_size]
 
         for word, index in vocab_dict:
             word2index[word] = index + Vocab.MASKS_COUNT
@@ -60,7 +61,7 @@ class Vocab():
 
 
 def load_embedding_matrix(file_path=config.embedding_matrix_path, max_vocab_size=102400):
-    embedding_matrix = np.load(file_path, + '.npy')
+    embedding_matrix = np.load(file_path + '.npy')
     flag_matrix = np.zeros_like(embedding_matrix[:Vocab.MASKS_COUNT])
     return np.concatenate([flag_matrix, embedding_matrix])[: max_vocab_size]
 
@@ -73,8 +74,9 @@ def load_word2vec_model():
 if __name__ == "__main__":
 
     vocab = Vocab()
-    vocab.load_vocab(config.vocab_key_to_index_path)
-
+    # vocab.load_vocab(config.vocab_key_to_index_path)
+    #
     # print(vocab.size())
-    # print(vocab.word_to_index('<PAD>'))
+    print(vocab.word_to_index('<PAD>'))
+    print(vocab.word2index['<PAD>'])
     # print(vocab.index_to_word(1024))
