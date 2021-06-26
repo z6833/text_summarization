@@ -24,6 +24,8 @@ def train(params):
     checkpoint_manager = tf.train.CheckpointManager(checkpoint,
                                                     directory=path.join(params['checkpoint_dir'], 'seq2seq_model'),
                                                     max_to_keep=5)
+    if params['restore']:
+        checkpoint.restore(checkpoint_manager.latest_checkpoint)                                        
 
     # 5. 模型训练
     train_model(model, vocab, params, checkpoint_manager)
