@@ -32,7 +32,7 @@ def get_params():
     parser.add_argument("--max_dec_len", default=config.max_dec_len, help="Decoder input max sequence length", type=int)
 
     parser.add_argument("--vocab_size", default=config.vocab_size, help="max vocab size , None-> Max ", type=int)
-    parser.add_argument("--beams_size", default=config.beams_size,
+    parser.add_argument("--beam_size", default=config.beam_size,
                         help="beam size for beam search decoding (must be equal to batch size in decode mode)", type=int)
     parser.add_argument("--embed_size", default=config.embedding_dim, help="Words embeddings dimension", type=int)
     parser.add_argument("--enc_units", default=400, help="Encoder GRU cell units number", type=int)

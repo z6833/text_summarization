@@ -36,6 +36,7 @@ if __name__ == '__main__':
     # 获取参数
     params = get_params()
     params['mode'] = 'train'
+    params['restore'] = False  # 基于原来的模型继续训练
 
     # 模型训练
     train(params)

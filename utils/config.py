@@ -68,7 +68,7 @@ max_dec_len = 100
 
 vocab_size = 30000
 # vocab_size = 300
-beams_size = 4
+beam_size = batch_size
 
 # samples
 sample_total = 82871

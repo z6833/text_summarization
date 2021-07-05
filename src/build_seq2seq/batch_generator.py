@@ -1,8 +1,21 @@
 # coding=utf-8
 import tensorflow as tf
+from tqdm import tqdm
 
 from utils import config
 from utils.data_loader import load_dataset
+
+
+def beam_test_batch_generator(beam_size, max_enc_len=200, max_dec_len=50):
+    test_x, _ = load_dataset(config.test_x_path, config.test_y_path, max_enc_len, max_dec_len)
+
+    print(f'total test samples: {len(test_x)} .')
+    for row in tqdm(test_x, total=len(test_x), desc='beam search'):
+
+        beam_search_data = tf.convert_to_tensor([row for _ in range(beam_size)])
+        yield beam_search_data
+
+
 
 
 def train_batch_generator(batch_size, max_enc_len=200, max_dec_len=50, sample_sum=None):
