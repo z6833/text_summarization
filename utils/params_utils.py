@@ -11,6 +11,7 @@ def get_params():
 
     # 模型通用超参数
     parser.add_argument("--batch_size", default=config.batch_size, help="batch size", type=int)
+    parser.add_argument("--buffer_size", default=128, help="batch size", type=int)
     parser.add_argument("--epochs", default=config.epochs, help="train epochs", type=int)
     parser.add_argument("--learning_rate", default=0.01, help="Learning rate", type=float)
 
@@ -61,6 +62,7 @@ def get_params():
     parser.add_argument("--pointer_gen", default=False, help="pointer_gen", type=bool)
     parser.add_argument("--use_coverage", default=False, help="use_coverage", type=bool)
 
+    parser.add_argument("--decode_mode", default='greedy', help="greedy_decode", type=str)
     parser.add_argument("--greedy_decode", default=False, help="greedy_decode", type=bool)
     parser.add_argument("--result_save_path", default=get_result_filename(config.batch_size, config.epochs, 200, 300),
                         help='result_save_path', type=str)
