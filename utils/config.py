@@ -11,7 +11,7 @@ results_dir = path.join(root_dir, 'results')
 
 # 数据集路径
 train_data_path = path.join(data_dir, 'train.csv')
-test_data_path = path.join(data_dir, 'demotest.csv')
+test_data_path = path.join(data_dir, 'test.csv')
 
 # 预处理后的数据集路径
 train_seg_path = path.join(data_dir, 'train_seg_data.csv')
@@ -75,5 +75,8 @@ sample_total = 82871
 
 # 文件路径
 default_checkpoint_dir = model_dir
-test_save_dir = path.join(results_dir, 'demotest')
+test_save_dir = path.join(results_dir, 'test')
+
+# 模型保存文件夹
+pgn_checkpoint_dir = path.join(results_dir, 'checkpoints', 'training_checkpoints_pgn')
 
